@@ -82,6 +82,15 @@ const InactivityMessage = () => {
     };
   }, [showPopup, secondsToLogout]);
 
+  const handleOnKeyUp = (e) => {
+    const ENTER = 13;
+    console.log(e.keyCode);
+
+    if (e.keyCode === ENTER) {
+      setShowPopup(false);
+    }
+  };
+
   return (
     showPopup &&
     session.info.isLoggedIn && (
@@ -89,6 +98,9 @@ const InactivityMessage = () => {
         open={showPopup}
         aria-labelledby="inactivity-message-title"
         aria-describedby="inactivity-message-description"
+        onKeyUp={(event) => {
+          handleOnKeyUp(event);
+        }}
       >
         <DialogTitle id="inactivity-message-title">Continue session?</DialogTitle>
         <DialogContent id="inactivity-message-description">
@@ -116,6 +128,7 @@ const InactivityMessage = () => {
             </Button>
           </LogoutButton>
           <Button
+            type="button"
             variant="contained"
             color="primary"
             endIcon={<CheckIcon />}
