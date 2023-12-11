@@ -84,7 +84,6 @@ const InactivityMessage = () => {
 
   const handleOnKeyUp = (e) => {
     const ENTER = 13;
-    console.log(e.keyCode);
 
     if (e.keyCode === ENTER) {
       setShowPopup(false);

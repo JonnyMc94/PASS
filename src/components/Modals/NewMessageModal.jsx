@@ -111,12 +111,24 @@ const NewMessageModal = ({ showModal, setShowModal, oldMessage = '', toField = '
     await refreshOutbox();
   };
 
+  const handleOnKeyUp = (e) => {
+    const ENTER = 13;
+
+    if (e.keyCode === ENTER) {
+      handleSubmit(e);
+      setShowModal(false);
+    }
+  };
+
   /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <Dialog
       open={showModal}
       aria-labelledby="new-message-modal"
       onClose={() => handleReplyMessage(false)}
+      onKeyUp={(event) => {
+        handleOnKeyUp(event);
+      }}
     >
       <Box
         noValidate
