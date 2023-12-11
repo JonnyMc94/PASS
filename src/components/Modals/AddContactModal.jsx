@@ -86,11 +86,22 @@ const AddContactModal = ({ addContact, showAddContactModal, setShowAddContactMod
     }
   };
 
+  const handleOnKeyUp = (e) => {
+    const ENTER = 13;
+
+    if (e.keyCode === ENTER) {
+      setShowAddContactModal(false);
+    }
+  };
+
   return (
     <Dialog
       open={showAddContactModal}
       aria-labelledby="dialog-title"
       onClose={() => setShowAddContactModal(false)}
+      onKeyUp={(event) => {
+        handleOnKeyUp(event);
+      }}
     >
       <FormSection title="Add Contact" headingId="add-contact-form">
         <form aria-labelledby="add-contact-form" onSubmit={handleAddContact} autoComplete="off">
